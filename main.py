@@ -50,7 +50,7 @@ def main():
 
     time.sleep(500/1000)
 
-    ser.write(b'R') # F for flash
+    ser.write(b'R') # R for FPGA, F for flash
     resp = ser.read(1)[0]
     print("Got response: "+str(resp))
     if(resp.to_bytes(1,'big') != b'R'):
