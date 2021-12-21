@@ -5,3 +5,5 @@ Currently this loader does not support verifying the binary. Support for this ma
 Required Python3 libraries:
  - argparse
  - pySerial
+
+ To run: ```python main.py -p [PORT] -b [FILE]```
