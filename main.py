@@ -9,8 +9,8 @@ def main():
     print("Starting program...")
 
     parser = argparse.ArgumentParser(description="Mojo V3 Loader Arguments")
-    parser.add_argument('port', metavar='p', type=str, nargs='+', help="select a serial port to upload to")
-    parser.add_argument('file', metavar='b', type=str, nargs='+', help="select the binary file to upload")
+    parser.add_argument('-p', "--port", required=True, type=str, nargs='+', help="select a serial port to upload to")
+    parser.add_argument('-b', "--file", required=True, type=str, nargs='+', help="select the binary file to upload")
     
     args = parser.parse_args()
 
