@@ -9,27 +9,28 @@ def main():
     print("Starting program...")
 
     parser = argparse.ArgumentParser(description="Mojo V3 Loader Arguments")
-    parser.add_argument('-p', "--port", required=True, type=str, nargs='+', help="select a serial port to upload to")
-    parser.add_argument('-b', "--file", required=True, type=str, nargs='+', help="select the binary file to upload")
+    parser.add_argument('-p', "--port", required=True, type=str, help="select a serial port to upload to")
+    parser.add_argument('-b', "--file", required=True, type=str, help="select the binary file to upload")
     
     args = parser.parse_args()
 
     try:
-        port = args["port"]
+        port = args.port
     except Exception:
         print("Port not defined! Please select a port with -p [port]")
         sys.exit(-1)
     try:
-        binary = args["file"]
+        binary = args.file
     except Exception:
         print("Binary path not defined! Please select a binary path with -b [path]")
         sys.exit(-1)
 
     print("Reading bin file...")
-    file = open(binary, "rb")
+    file = open(str(binary), "rb")
     binary_data = file.read()
     file_len = len(binary_data)
     file.close()
+    print("Successfully read file: "+str(binary))
 
     ser = serial.Serial(port, 9600, serial.EIGHTBITS, serial.PARITY_NONE, serial.STOPBITS_ONE, timeout=2) # 9600 baud, 2 second timeout
     ser.open()
